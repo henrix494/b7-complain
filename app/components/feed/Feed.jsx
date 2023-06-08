@@ -32,7 +32,9 @@ export default function Feed() {
 		fetchPosts();
 		const interval = setInterval(() => {
 			const fetchPosts = async () => {
-				const response = await fetch("/api/posts");
+				const response = await fetch("/api/posts", {
+					next: { revalidate: 10 },
+				});
 				const data = await response.json();
 				setPosts(data);
 			};
