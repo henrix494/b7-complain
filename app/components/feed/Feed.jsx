@@ -47,7 +47,7 @@ export default function Feed() {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
 				const userLeft = await fetch(`/api/info/${session?.user.id}`, {
-					next: { revalidate: 5 },
+					next: { revalidate: 10 },
 				});
 				const userLeftData = await userLeft.json();
 				setUserData(userLeftData.numberOfComments);
