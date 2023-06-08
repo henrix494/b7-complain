@@ -46,7 +46,9 @@ export default function Feed() {
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
-				const userLeft = await fetch(`/api/info/${session?.user.id}`);
+				const userLeft = await fetch(`/api/info/${session?.user.id}`, {
+					next: { revalidate: 60 },
+				});
 				const userLeftData = await userLeft.json();
 				setUserData(userLeftData.numberOfComments);
 			};
