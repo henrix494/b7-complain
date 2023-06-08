@@ -6,6 +6,7 @@ import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
 import { useSession } from "next-auth/react";
 import PostNav from "../postnav/PostNav";
+export const revalidate = 0;
 export default function Feed() {
 	const dispatch = useDispatch();
 	const value = useAppSelector((state) => {
@@ -32,9 +33,7 @@ export default function Feed() {
 		fetchPosts();
 		const interval = setInterval(() => {
 			const fetchPosts = async () => {
-				const response = await fetch("/api/posts", {
-					cache: "no-store",
-				});
+				const response = await fetch("/api/posts");
 				const data = await response.json();
 				setPosts(data);
 			};
