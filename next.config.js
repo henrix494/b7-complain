@@ -20,7 +20,7 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/api/post/new",
+				source: "/api/posts",
 				headers: [
 					{
 						key: "Cache-Control",
@@ -29,7 +29,7 @@ const nextConfig = {
 				],
 			},
 			{
-				source: "/api/post",
+				source: "/api/post/new",
 				headers: [
 					{
 						key: "Cache-Control",
