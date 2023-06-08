@@ -25,26 +25,13 @@ export default function Feed() {
 	};
 	useEffect(() => {
 		const fetchPosts = async () => {
-			const response = await fetch("/api/posts");
+			const response = await fetch("/api/posts", { next: { revalidate: 10 } });
 			const data = await response.json();
 			setPosts(data);
 		};
 		fetchPosts();
-		const interval = setInterval(() => {
-			const fetchPosts = async () => {
-				const response = await fetch("/api/posts", {
-					next: { revalidate: 10 },
-				});
-				const data = await response.json();
-				setPosts(data);
-			};
-			fetchPosts();
-		}, 7000);
+	});
 
-		return () => {
-			clearInterval(interval);
-		};
-	}, []);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
