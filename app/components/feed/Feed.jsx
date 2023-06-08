@@ -33,7 +33,7 @@ export default function Feed() {
 		const interval = setInterval(() => {
 			const fetchPosts = async () => {
 				const response = await fetch("/api/posts", {
-					next: { revalidate: 0 },
+					cache: "no-store",
 				});
 				const data = await response.json();
 				setPosts(data);
