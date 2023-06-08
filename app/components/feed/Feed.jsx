@@ -6,7 +6,6 @@ import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
 import { useSession } from "next-auth/react";
 import PostNav from "../postnav/PostNav";
-export const revalidate = 10;
 export default function Feed() {
 	const dispatch = useDispatch();
 	const value = useAppSelector((state) => {
@@ -31,20 +30,6 @@ export default function Feed() {
 			setPosts(data);
 		};
 		fetchPosts();
-		const interval = setInterval(() => {
-			const fetchPosts = async () => {
-				const response = await fetch("/api/posts", {
-					next: { revalidate: 10 },
-				});
-				const data = await response.json();
-				setPosts(data);
-			};
-			fetchPosts();
-		}, 7000);
-
-		return () => {
-			clearInterval(interval);
-		};
 	}, [value]);
 	useEffect(() => {
 		if (session?.user) {
@@ -86,6 +71,7 @@ export default function Feed() {
 			}
 			if (userDate > 0) {
 				try {
+					dispatch(changeSub(false));
 					setError(false);
 					setCom("");
 					dispatch(changeSub(false));
