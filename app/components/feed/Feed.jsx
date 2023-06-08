@@ -45,7 +45,7 @@ export default function Feed() {
 		return () => {
 			clearInterval(interval);
 		};
-	}, []);
+	}, [value]);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
