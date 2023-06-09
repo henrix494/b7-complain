@@ -33,6 +33,7 @@ export default function Feed() {
 		fetchPosts();
 	}, [session, value]);
 	console.log(posts);
+
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
@@ -42,17 +43,7 @@ export default function Feed() {
 			};
 			fetchLeftPosts();
 		}
-	}, [session]);
-	useEffect(() => {
-		if (session?.user) {
-			const fetchLeftPosts = async () => {
-				const userLeft = await fetch(`/api/info/${session?.user.id}`);
-				const userLeftData = await userLeft.json();
-				setUserData(userLeftData.numberOfComments);
-			};
-			fetchLeftPosts();
-		}
-	}, [value]);
+	}, [session, value]);
 
 	const getFilter = (filterFromChild) => {
 		setFilter(filterFromChild.value);
