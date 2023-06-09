@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 export const dynamic = "force-dynamic";
-export const revalidate = 10;
+export const revalidate = 5;
 export const fetchCache = "force-no-store";
 
 import { changeSub } from "../../../redux/features/subSlice";
