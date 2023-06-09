@@ -32,6 +32,7 @@ export default function Feed() {
 		};
 		fetchPosts();
 	}, [session, value]);
+	console.log(posts);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
