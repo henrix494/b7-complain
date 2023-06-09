@@ -4,9 +4,8 @@ const nextConfig = {
 		GOOGLE_ID: process.env.GOOGLE_ID,
 		GOOGLE_SECRET: process.env.GOOGLE_SECRET,
 		MONGODB_URI: process.env.MONGODB_URI,
-
-		NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-		NEXTAUTH_URL_INTERNAL: process.env.NEXTAUTH_URL_INTERNAL,
+		NEXTAUTH_URL: "https://b7-complain.vercel.app/",
+		NEXTAUTH_URL_INTERNAL: "https://b7-complain.vercel.app/",
 		NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
 	},
 	experimental: { appDir: true },
