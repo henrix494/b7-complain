@@ -6,7 +6,19 @@ import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
 import { useSession } from "next-auth/react";
 import PostNav from "../postnav/PostNav";
-export default function Feed() {
+
+export const getStaticProps = async () => {
+	const response = await fetch("/api/posts", { cache: "no-cache" });
+	const data = await response.json();
+	return {
+		props: {
+			data,
+		},
+		revalidate: 1,
+	};
+};
+
+export default function Feed({ data }) {
 	const dispatch = useDispatch();
 	const value = useAppSelector((state) => {
 		return state.subStatereducer.value.isSub;
@@ -23,26 +35,7 @@ export default function Feed() {
 			return !prev;
 		});
 	};
-	useEffect(() => {
-		const fetchPosts = async () => {
-			const response = await fetch("/api/posts", { cache: "no-cache" });
-			const data = await response.json();
-			setPosts(data);
-		};
-		fetchPosts();
-		const interval = setInterval(() => {
-			const fetchPosts = async () => {
-				const response = await fetch("/api/posts");
-				const data = await response.json();
-				setPosts(data);
-			};
-			fetchPosts();
-		}, 7000);
 
-		return () => {
-			clearInterval(interval);
-		};
-	}, []);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
@@ -120,7 +113,7 @@ export default function Feed() {
 		<div className="flex flex-col flex-wrap mt-[50px] gap-5 justify-center items-center">
 			<PostNav getFilter={getFilter} />
 			{filter === "הכל"
-				? posts.map((post) => {
+				? data.map((post) => {
 						return (
 							<Card key={post._id}>
 								<div className=" border-b-2 border-[#0000003c] w-full">
@@ -190,7 +183,7 @@ export default function Feed() {
 							</Card>
 						);
 				  })
-				: postss.map((post) => {
+				: data.map((post) => {
 						return (
 							<Card key={post._id}>
 								<div className=" border-b-2 border-[#0000003c] w-full">
