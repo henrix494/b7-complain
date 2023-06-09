@@ -30,13 +30,11 @@ export default function Feed() {
 			setPosts(data);
 		};
 		fetchPosts();
-	}, [value]);
+	}, [session, value]);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
-				const userLeft = await fetch(`/api/info/${session?.user.id}`, {
-					next: { revalidate: 10 },
-				});
+				const userLeft = await fetch(`/api/info/${session?.user.id}`);
 				const userLeftData = await userLeft.json();
 				setUserData(userLeftData.numberOfComments);
 			};
@@ -71,7 +69,6 @@ export default function Feed() {
 			}
 			if (userDate > 0) {
 				try {
-					dispatch(changeSub(false));
 					setError(false);
 					setCom("");
 					dispatch(changeSub(false));
