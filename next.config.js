@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	env: {
+		GOOGLE_ID: process.env.GOOGLE_ID,
+		GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+		MONGODB_URI: process.env.MONGODB_URI,
+
+		NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+		NEXTAUTH_URL_INTERNAL: process.env.NEXTAUTH_URL_INTERNAL,
+		NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+	},
 	experimental: { appDir: true },
 	webpack(config) {
 		config.experiments = { ...config.experiments, topLevelAwait: true };
@@ -8,20 +17,15 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/api/posts",
+				source: "/api/post",
 				headers: [
 					{
-						key: "Cache-Control",
-						value: "no-store max-age=0",
+						key: "Accept",
+						value: "application/json",
 					},
-				],
-			},
-			{
-				source: "/api/post/new",
-				headers: [
 					{
-						key: "Cache-Control",
-						value: "no-store max-age=0",
+						key: "Content-Type",
+						value: "application/json",
 					},
 				],
 			},
