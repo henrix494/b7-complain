@@ -26,7 +26,7 @@ export default function Feed() {
 	};
 	useEffect(() => {
 		const fetchPosts = async () => {
-			const response = await fetch("/api/posts");
+			const response = await fetch("/api/posts", { cache: "no-cache" });
 			const data = await response.json();
 			setPosts(data);
 		};
