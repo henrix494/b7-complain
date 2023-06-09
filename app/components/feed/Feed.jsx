@@ -2,6 +2,9 @@
 import Card from "../UI/Card";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
 import { useSession } from "next-auth/react";
