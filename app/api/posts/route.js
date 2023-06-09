@@ -5,7 +5,6 @@ export const GET = async (req, res) => {
 	try {
 		await connectToDB();
 		const posts = await Post.find().sort({ timeStamp: -1 });
-		res.revalidate("/posts");
 		return new Response(JSON.stringify(posts), {
 			status: 200,
 		});
