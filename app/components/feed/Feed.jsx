@@ -3,7 +3,6 @@ import Card from "../UI/Card";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { changeSub } from "../../../redux/features/subSlice";
-
 import { useAppSelector } from "@/redux/store";
 import { useSession } from "next-auth/react";
 import PostNav from "../postnav/PostNav";
@@ -31,9 +30,19 @@ export default function Feed() {
 			setPosts(data);
 		};
 		fetchPosts();
-	}, [session, value]);
-	console.log(posts);
+		const interval = setInterval(() => {
+			const fetchPosts = async () => {
+				const response = await fetch("/api/posts");
+				const data = await response.json();
+				setPosts(data);
+			};
+			fetchPosts();
+		}, 7000);
 
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
 	useEffect(() => {
 		if (session?.user) {
 			const fetchLeftPosts = async () => {
@@ -43,7 +52,17 @@ export default function Feed() {
 			};
 			fetchLeftPosts();
 		}
-	}, [session, value]);
+	}, [session]);
+	useEffect(() => {
+		if (session?.user) {
+			const fetchLeftPosts = async () => {
+				const userLeft = await fetch(`/api/info/${session?.user.id}`);
+				const userLeftData = await userLeft.json();
+				setUserData(userLeftData.numberOfComments);
+			};
+			fetchLeftPosts();
+		}
+	}, [value]);
 
 	const getFilter = (filterFromChild) => {
 		setFilter(filterFromChild.value);
@@ -61,11 +80,10 @@ export default function Feed() {
 				return;
 			}
 			if (userDate > 0) {
-				dispatch(changeSub(false));
-
 				try {
 					setError(false);
 					setCom("");
+					dispatch(changeSub(false));
 
 					const response = await fetch(`/api/comments/${id}`, {
 						headers: {
