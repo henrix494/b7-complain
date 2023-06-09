@@ -6,7 +6,8 @@ const nextConfig = {
 		MONGODB_URI: process.env.MONGODB_URI,
 		NEXTAUTH_URL: "https://b7-complain.vercel.app/",
 		NEXTAUTH_URL_INTERNAL: "https://b7-complain.vercel.app/",
-		NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+		NEXTAUTH_SECRET:
+			"sadjovnasoihcjn98123hcoinjviwejfc9812jdoinfv98uw3g912jdasincx9812",
 	},
 	experimental: { appDir: true },
 	webpack(config) {
