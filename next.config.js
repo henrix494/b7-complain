@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	images: {
+		domains: ["https://lh3.googleusercontent.com/"],
+	},
+	
 	experimental: { appDir: true },
 	webpack(config) {
 		config.experiments = { ...config.experiments, topLevelAwait: true };
@@ -8,7 +12,7 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/api/post",
+				source: "/api/post/new",
 				headers: [
 					{
 						key: "Accept",

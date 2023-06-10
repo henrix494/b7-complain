@@ -28,6 +28,9 @@ const UserSchema = new Schema({
 		type: Number,
 		default: 0,
 	},
+	postsLiked: {
+		type: Array,
+	},
 });
 
 const User = models.User || model("User", UserSchema);

@@ -20,7 +20,7 @@ const PostSchema = new Schema({
 		type: Date,
 	},
 	likes: {
-		type: Number,
+		type: Array,
 	},
 	comments: {
 		type: Array,

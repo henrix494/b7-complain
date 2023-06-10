@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
+import FacebookProvider from "next-auth/providers/facebook";
 import User from "@/models/user";
 import { connectToDB } from "@/utils/database";
 const handler = NextAuth({
@@ -29,10 +29,11 @@ const handler = NextAuth({
 				if (!userExists) {
 					await User.create({
 						email: profile.email,
-						username: profile.name.replace(/\s/g, "").toLowerCase(),
+						username: profile.name.replace(" ", "").toLowerCase(),
 						image: profile.picture,
 						numberOfPosts: 5,
 						numberOfComments: 20,
+						postsLiked: [],
 					});
 				}
 

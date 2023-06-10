@@ -3,7 +3,6 @@ import Post from "@/models/post";
 
 export const POST = async (req) => {
 	const { userId, nickname, tag, post, timeStamp } = await req.json();
-
 	try {
 		await connectToDB();
 		const newPost = new Post({
@@ -12,7 +11,7 @@ export const POST = async (req) => {
 			tag: tag,
 			post: post,
 			timeStamp: timeStamp,
-			likes: 0,
+			likes: [],
 			comments: [],
 		});
 		await newPost.save();

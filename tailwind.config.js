@@ -7,8 +7,8 @@ module.exports = {
 	],
 	theme: {
 		colors: {
-			main_gray: "#272F3B",
-			main_orange: "#FE811E",
+			main_gray: "#0A0077",
+			main_orange: "#FFA629",
 		},
 		extend: {},
 	},

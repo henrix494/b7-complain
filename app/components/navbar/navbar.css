@@ -1,0 +1,31 @@
+.ani {
+	animation-name: navbarani;
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.anti {
+	animation-name: navbaranittt;
+	animation-duration: 3s;
+	animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes navbarani {
+	0% {
+		border-top-left-radius: 300%;
+		border-bottom-left-radius: 300%;
+	}
+	100% {
+		border-radius: 0px;
+	}
+}
+@keyframes navbaranittt {
+	0% {
+		border-top-left-radius: 0%;
+		border-bottom-left-radius: 0%;
+	}
+	100% {
+		border-top-left-radius: 100%;
+		border-bottom-left-radius: 100%;
+	}
+}

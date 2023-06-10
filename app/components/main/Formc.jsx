@@ -105,24 +105,18 @@ export default function Formc() {
 	return (
 		<form className=" " onSubmit={createPost}>
 			{" "}
-			<div className="flex justify-center flex-col text-[black]">
+			<div className="flex justify-center flex-col text-[black] px-3">
 				<div className=" flex flex-col">
-					<div className=" self-center">
-						{" "}
-						<label
-							className="text-center text-[white] text-xl my-2"
-							htmlFor="name">
-							כינוי
-						</label>
-					</div>
+					<div className=" self-center"> </div>
 					<div>
 						<input
 							value={nickName}
 							onChange={onChangeNickName}
-							className="w-full"
+							className="w-full placeholder:text-center rounded-md text-right pr-2"
 							type="text"
 							name="name"
 							id="name"
+							placeholder="כינוי"
 						/>
 					</div>
 				</div>
@@ -131,32 +125,39 @@ export default function Formc() {
 					<p className="text-center text-[white] text-xl my-2">נושא התלונה</p>
 					<Select
 						onChange={onChangeTagName}
-						className=" text-[black]"
+						className=" text-[black] rounded-md"
 						options={options}
 					/>
 				</div>
-				<div>
+				<div className=" relative">
 					{" "}
-					<p htmlFor="body" className="text-center text-[white] text-xl my-2">
-						פרט נא
-					</p>
 					<textarea
 						value={post}
 						onChange={onChangePost}
-						className="w-[100%] mt-5"
+						className=" rounded-md w-[100%] mt-5 placeholder:text-center placeholder:pt-5 placeholder:text-2xl text-right"
 						name=""
 						id="body"
 						cols="10"
-						rows="5"></textarea>
+						rows="10"
+						placeholder="תלונה"></textarea>{" "}
+					{session?.user && (
+						<div className=" absolute bottom-0 left-0 py-6 px-2">
+							<span className="bg-main_gray text-[white] py-3 rounded-full px-[1rem]">
+								{postsLeft}
+							</span>
+						</div>
+					)}
 				</div>
 				{error && (
 					<div className="text-center text-2xl text-[white] border-2 border-[red]">
 						{error}
 					</div>
 				)}
-
-				<div className="self-center mt-2">
-					<button className=" bg-main_gray px-3 py-2 rounded-lg text-[white]">
+				<div className="text-center">
+					<h5 className=" text-main_gray text-lg">ניתן לפרסם 5 פוסטים ביום</h5>
+				</div>
+				<div className="self-center mt-2  w-[80%] bg-main_gray rounded-lg">
+					<button className="  px-3 py-2  text-[white] w-[100%] text-xl">
 						פרסם
 					</button>
 				</div>
