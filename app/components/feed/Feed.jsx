@@ -137,6 +137,10 @@ const Feed = () => {
 					method: "PATCH",
 				});
 
+				const response = await fetch("/api/posts", { cache: "no-cache" });
+				const data = await response.json();
+				setPosts(data);
+
 				dispatch(changeSub(true));
 			} catch (error) {
 				console.error("Error posting comment:", error);
@@ -164,6 +168,9 @@ const Feed = () => {
 					userId: session?.user.id,
 				}),
 			});
+			const response = await fetch("/api/posts", { cache: "no-cache" });
+			const data = await response.json();
+			setPosts(data);
 		}
 	};
 
@@ -227,7 +234,9 @@ const Feed = () => {
 										placeholder="כתוב תגובה"></textarea>
 								</div>
 								<div className="flex my-5 items-center justify-around">
-									<div onClick={() => likeAdded(post._id)}>
+									<div
+										className=" cursor-pointer"
+										onClick={() => likeAdded(post._id)}>
 										<p>לייק</p>
 									</div>
 									<div>
