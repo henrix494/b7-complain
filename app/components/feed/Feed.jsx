@@ -6,12 +6,15 @@ import Card from "../UI/Card";
 import PostNav from "../postnav/PostNav";
 import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime"; // Import the plugin
 export const dynamic = "force-dynamic";
 export const revalidate = 5;
 export const fetchCache = "force-no-store";
-
+import "dayjs/locale/he";
 const Feed = () => {
+	dayjs.extend(relativeTime); // Register the plugin
+	dayjs.locale("he");
 	const dispatch = useDispatch();
 	const value = useAppSelector((state) => state.subStatereducer.value.isSub);
 	const { data: session } = useSession();
@@ -26,7 +29,10 @@ const Feed = () => {
 	const onShowHandler = () => {
 		setShowComments((prev) => !prev);
 	};
+	// DATA FORAMT
+	const now = new Date();
 
+	//
 	useEffect(() => {
 		const fetchPosts = async () => {
 			try {
@@ -39,7 +45,6 @@ const Feed = () => {
 		};
 
 		fetchPosts();
-
 		const interval = setInterval(fetchPosts, 5000);
 
 		return () => {
@@ -183,21 +188,26 @@ const Feed = () => {
 			) : (
 				filteredPosts.map((post) => (
 					<Card key={post._id}>
-						<div className="border-b-2 border-[#0000003c] w-full">
-							<h3 className="p-5 text-3xl font-bold">
-								נוצר על ידי:{" "}
-								<span className="font-light"> {post.nickname}</span>
-							</h3>
-							<div>
-								<h3 className="pr-5 pb-3 text-3xl font-bold">
-									נושא: <span className="font-light"> {post.tag}</span>
-								</h3>
+						<div className="  pt-7 px-7">
+							<div className="border-b-2 border-[#0000003c] pb-5">
+								<div>
+									<p>{`${post.tag} ${dayjs(post.timeStamp).fromNow()}`}</p>
+								</div>
+								<div>
+									<h2 className="text-3xl">{post.title}</h2>
+								</div>
+							</div>
+							<div className="flex self-end">
+								<p>
+									{" "}
+									על ידי <span className="text-[blue]">{post.nickname}</span>
+								</p>
 							</div>
 						</div>
-						<div className="p-5">
+						<div className="px-7 pt-2">
 							<article className="text-2xl">{post.post}</article>
 						</div>
-						<div className="border-t-2 border-[#0000003c] flex justify-around pt-5">
+						<div className=" flex justify-around pt-5">
 							<div>
 								<p>{`(${post.likes.length}) `}:לייקים</p>
 							</div>

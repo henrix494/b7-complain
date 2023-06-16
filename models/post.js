@@ -9,6 +9,9 @@ const PostSchema = new Schema({
 	nickname: {
 		type: String,
 	},
+	title: {
+		type: String,
+	},
 
 	tag: {
 		type: String,
@@ -19,6 +22,7 @@ const PostSchema = new Schema({
 	timeStamp: {
 		type: Date,
 	},
+
 	likes: {
 		type: Array,
 	},

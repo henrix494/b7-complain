@@ -20,6 +20,7 @@ export default function Formc() {
 	const [nickName, setNickName] = useState("");
 	const [tag, setTag] = useState("");
 	const [post, setPost] = useState("");
+	const [title, setTitle] = useState("");
 	const [error, setError] = useState("");
 	const [postsLeft, setPostsLeft] = useState();
 	useEffect(() => {
@@ -38,7 +39,7 @@ export default function Formc() {
 		setSubmitting(true);
 
 		if (session?.user) {
-			if (!nickName || !post) {
+			if (!nickName || !post || !title) {
 				setError("נא למלא את כל השדות");
 				return;
 			} else {
@@ -56,16 +57,18 @@ export default function Formc() {
 							method: "POST",
 							body: JSON.stringify({
 								userId: session.user.id,
+								title: title,
 								nickname: nickName,
 								tag: tag,
-								post: post,
 								timeStamp: timeStamp,
+								post: post,
 							}),
 						});
 						setNickName("");
 						setPost("");
 						setTag("");
 						setError("");
+						setTitle("");
 
 						const path = await fetch(`/api/number/${session?.user.id}`, {
 							headers: {
@@ -101,13 +104,15 @@ export default function Formc() {
 	const onChangePost = (e) => {
 		setPost(e.target.value);
 	};
+	const onChangeTitle = (e) => {
+		setTitle(e.target.value);
+	};
 
 	return (
 		<form className=" " onSubmit={createPost}>
 			{" "}
 			<div className="flex justify-center flex-col text-[black] px-3">
 				<div className=" flex flex-col">
-					<div className=" self-center"> </div>
 					<div>
 						<input
 							value={nickName}
@@ -127,6 +132,15 @@ export default function Formc() {
 						onChange={onChangeTagName}
 						className=" text-[black] rounded-md"
 						options={options}
+					/>
+				</div>
+				<div className="flex flex-col mt-2">
+					<input
+						value={title}
+						onChange={onChangeTitle}
+						className=" rounded-md text-right placeholder:text-center"
+						type="text"
+						placeholder="כותרת"
 					/>
 				</div>
 				<div className=" relative">

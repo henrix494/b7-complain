@@ -63,14 +63,14 @@ export default function Register() {
 					/>
 				</div>
 				<div className=" flex flex-row-reverse mt-10 px-10">
-					<label htmlFor="username" className="text-[white] ml-4 text-2xl">
+					<label htmlFor="email" className="text-[white] ml-4 text-2xl">
 						:אמייל
 					</label>
 					<input
 						className="w-[464px] rounded-lg"
-						type="password"
-						id="username"
-						name="username"
+						type="text"
+						id="email"
+						name="email"
 					/>
 				</div>
 				<div className=" flex justify-center mt-10">

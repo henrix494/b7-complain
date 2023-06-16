@@ -23,7 +23,7 @@ export default function Main() {
 							</button>
 						</div>
 					</div>
-					<div className=" h-[500px] text-[white]  w-[350px] bg-main_orange absolute top-[100px] max-lg:right-1/2 max-lg:translate-x-[50%] lg:right-[-40px]  rounded-lg">
+					<div className=" h-[550px] text-[white]  w-[350px] bg-main_orange absolute top-[100px] max-lg:right-1/2 max-lg:translate-x-[50%] lg:right-[-40px]  rounded-lg">
 						<Formc />
 					</div>
 				</div>
