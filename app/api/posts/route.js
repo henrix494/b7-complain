@@ -1,6 +1,8 @@
 import { connectToDB } from "@/utils/database";
 import Post from "@/models/post";
-
+export const dynamic = "force-dynamic";
+export const revalidate = 5;
+export const fetchCache = "force-no-store";
 export const GET = async (request) => {
 	try {
 		await connectToDB();
