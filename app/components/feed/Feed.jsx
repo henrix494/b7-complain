@@ -8,10 +8,11 @@ import { changeSub } from "../../../redux/features/subSlice";
 import { useAppSelector } from "@/redux/store";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime"; // Import the plugin
+import "dayjs/locale/he";
 export const dynamic = "force-dynamic";
 export const revalidate = 5;
 export const fetchCache = "force-no-store";
-import "dayjs/locale/he";
+
 const Feed = () => {
 	dayjs.extend(relativeTime); // Register the plugin
 	dayjs.locale("he");
