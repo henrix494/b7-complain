@@ -61,7 +61,7 @@ export default function Login() {
 					<label className="text-3xl" htmlFor="password">
 						סיסמה{" "}
 					</label>
-					<div className="text-center">{error}</div>
+					<div className=" text-[red] text-3xl">{error}</div>
 				</div>
 
 				<button className="bg-[white] px-5 py-3 rounded-xl text-lg">
