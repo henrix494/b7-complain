@@ -15,7 +15,7 @@ export default function Home() {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config','G-DKL1SYD7EG')`}</Script>
+  gtag('config','${process.env.GA_TRACKING_ID}')`}</Script>
 			<Main />
 			<Info />
 
