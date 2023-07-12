@@ -3,6 +3,8 @@ import { changeSub } from "../../../redux/features/subSlice";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { useSession } from "next-auth/react";
+import { UploadButton } from "@uploadthing/react";
+import { ourFileRouter } from "../../api/uploadthing/core";
 import { useEffect, useState } from "react";
 export default function Formc() {
 	const options = [
@@ -170,11 +172,26 @@ export default function Formc() {
 				<div className="text-center">
 					<h5 className=" text-main_gray text-lg">ניתן לפרסם 5 פוסטים ביום</h5>
 				</div>
+
 				<div className="self-center mt-2  w-[80%] bg-main_gray rounded-lg">
 					<button className="  px-3 py-2  text-[white] w-[100%] text-xl">
 						פרסם
 					</button>
 				</div>
+			</div>
+			<div className="flex justify-center">
+				<UploadButton
+					endpoint="imageUploader"
+					onClientUploadComplete={(res) => {
+						// Do something with the response
+						console.log("Files: ", res);
+						alert("Upload Completed");
+					}}
+					onUploadError={(error) => {
+						// Do something with the error.
+						alert(`ERROR! ${error.message}`);
+					}}
+				/>
 			</div>
 		</form>
 	);

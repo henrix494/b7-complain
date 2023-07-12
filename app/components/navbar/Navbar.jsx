@@ -14,6 +14,7 @@ export default function Navbar() {
 	const [hamToggler, setHamToggler] = useState(false);
 	const onClickHam = () => {
 		setHamToggler((prev) => !prev);
+		console.log(session);
 	};
 	useEffect(() => {
 		if (session?.user) {
@@ -70,7 +71,7 @@ export default function Navbar() {
 										שנישארו
 									</h4>
 								</div>
-								<p> {session.user.name} ברוכים הבאים</p>
+								<p> {session?.user.name || session?.user.email} ברוכים הבאים</p>
 								<div>
 									<button
 										className="  bg-main_orange p-2 rounded-lg"
@@ -81,9 +82,11 @@ export default function Navbar() {
 							</div>
 						) : (
 							<>
-								<Link href={"/login"}>
+								<Link
+									href={"/login"}
+									className="p-2 rounded-lg px-4 bg-[white] text-[black] text-xl">
 									{" "}
-									<button>כניסה</button>{" "}
+									להתחבר{" "}
 								</Link>
 								<Link
 									href={"/register"}
@@ -118,7 +121,10 @@ export default function Navbar() {
 						</div>
 						<div className=" text-center">
 							<p className="text-xl font-bold"> ברוכים הבאים</p>
-							<p className="text-2xl pt-2 font-serif"> {session?.user.name} </p>
+							<p className="text-2xl pt-2 font-serif">
+								{" "}
+								{session?.user.name || session?.user.email}{" "}
+							</p>
 						</div>
 						<div>
 							{" "}
@@ -143,7 +149,7 @@ export default function Navbar() {
 					</div>
 				</div>
 
-				<div className="flex h-full items-center px-10 justify-between w-[100%]  ">
+				<div className="flex h-full items-center px-6 justify-between w-[100%]  ">
 					<div className=" ">
 						<Link href={"/"}>
 							<h1 className="text-2xl">באר שבע</h1>
@@ -175,9 +181,11 @@ export default function Navbar() {
 							</div>
 						) : (
 							<>
-								<Link href={"/login"}>
+								<Link
+									href={"/login"}
+									className="p-2 rounded-lg px-4 bg-[white] text-[black] text-xl">
 									{" "}
-									<button>כניסה</button>{" "}
+									להתחבר
 								</Link>
 								<Link
 									href={"/register"}

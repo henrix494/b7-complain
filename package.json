@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
+    "@uploadthing/react": "^5.0.0",
     "autoprefixer": "10.4.14",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.8",
@@ -21,10 +22,13 @@
     "next-auth": "^4.22.1",
     "next-redux-wrapper": "^8.1.0",
     "postcss": "8.4.24",
+    "pusher-js": "^8.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-redux": "^8.0.7",
     "react-select": "^5.7.3",
-    "tailwindcss": "3.3.2"
+    "tailwindcss": "3.3.2",
+    "uploadthing": "^5.0.0"
   }
 }
