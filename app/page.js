@@ -1,3 +1,4 @@
+"use client";
 import Main from "./components/main/Main";
 import Info from "./components/infoForm/Info";
 import Feed from "./components/feed/Feed";
