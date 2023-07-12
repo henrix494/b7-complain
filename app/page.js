@@ -11,11 +11,11 @@ export default function Home() {
 			/>
 			<Script
 				id="google-analytics"
-				strategy="afterInteractive">{`  window.dataLayer = window.dataLayer || [];
+				strategy="afterInteractive">{`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '${process.env.GA_TRACKING_ID}')`}</Script>
+  gtag('config','G-DKL1SYD7EG')`}</Script>
 			<Main />
 			<Info />
 
